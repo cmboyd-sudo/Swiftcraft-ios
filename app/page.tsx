@@ -14,12 +14,38 @@ import {
 
 export default function Home() {
   const [prompt, setPrompt] = useState('')
+  const [appName, setAppName] = useState('')
   const [isGenerating, setIsGenerating] = useState(false)
+  const [generatedCode, setGeneratedCode] = useState('')
+  const [error, setError] = useState('')
 
-  const handleGenerate = () => {
+  const handleGenerate = async () => {
     if (!prompt) return
+    
     setIsGenerating(true)
-    setTimeout(() => setIsGenerating(false), 3000)
+    setError('')
+    setGeneratedCode('')
+
+    try {
+      const response = await fetch('/api/generate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          prompt, 
+          appName: appName || 'MyApp'
+        }),
+      })
+
+      const data = await response.json()
+      
+      if (!response.ok) throw new Error(data.error)
+      
+      setGeneratedCode(data.code)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to generate')
+    } finally {
+      setIsGenerating(false)
+    }
   }
 
   return (
@@ -31,7 +57,7 @@ export default function Home() {
             <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-pink-600 rounded-xl flex items-center justify-center">
               <Code2 className="w-6 h-6 text-white" />
             </div>
-            <span className="text-xl font-bold text-white">SwiftCraft</span>
+            <span className="text-xl font-bold text-white">ShipThat</span>
           </div>
           <div className="hidden md:flex items-center gap-6 text-sm text-gray-400">
             <a href="#features" className="hover:text-white transition-colors">Features</a>
@@ -76,7 +102,7 @@ export default function Home() {
           <div className="flex items-center justify-center gap-8 text-sm text-gray-500">
             <div className="flex items-center gap-2">
               <CheckCircle className="w-5 h-5 text-emerald-400" />
-              <span>10 min to TestFlight</span>
+              <span>Save thousands in dev costs</span>
             </div>
             <div className="flex items-center gap-2">
               <CheckCircle className="w-5 h-5 text-emerald-400" />
@@ -118,7 +144,7 @@ export default function Home() {
                 <Plane className="w-8 h-8 text-orange-400" />
               </div>
               <h3 className="font-semibold text-white mb-2">TestFlight</h3>
-              <p className="text-gray-400 text-sm">Get link in 10 min, test on iPhone</p>
+              <p className="text-gray-400 text-sm">Test on your iPhone</p>
             </div>
             <div className="text-center">
               <div className="w-16 h-16 bg-orange-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
@@ -152,6 +178,8 @@ export default function Home() {
                 <input
                   type="text"
                   placeholder="App Name (e.g., FitTrack)"
+                  value={appName}
+                  onChange={(e) => setAppName(e.target.value)}
                   className="flex-1 bg-slate-900/50 rounded-xl p-3 text-white border border-white/10 focus:border-orange-500/50 focus:outline-none"
                 />
                 <button
@@ -177,8 +205,31 @@ export default function Home() {
             {isGenerating && (
               <div className="mt-8 p-8 rounded-xl bg-slate-900/50 flex flex-col items-center">
                 <div className="w-16 h-16 border-4 border-orange-500/30 border-t-orange-500 rounded-full animate-spin mb-4"></div>
-                <p className="text-white font-medium">Building your app on cloud Mac...</p>
-                <p className="text-gray-500 text-sm mt-2">This takes about 10 minutes</p>
+                <p className="text-white font-medium">Building your app...</p>
+                <p className="text-gray-500 text-sm mt-2">Time varies based on features and complexity</p>
+              </div>
+            )}
+
+            {generatedCode && (
+              <div className="mt-8 glass rounded-xl p-6">
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="font-semibold text-white">Generated SwiftUI Code</h3>
+                  <button 
+                    onClick={() => navigator.clipboard.writeText(generatedCode)}
+                    className="text-sm text-orange-400 hover:text-orange-300"
+                  >
+                    Copy
+                  </button>
+                </div>
+                <pre className="bg-slate-950 rounded-lg p-4 overflow-x-auto text-sm text-gray-300 font-mono max-h-96 overflow-y-auto">
+                  {generatedCode}
+                </pre>
+              </div>
+            )}
+
+            {error && (
+              <div className="mt-4 p-4 rounded-xl bg-red-500/20 border border-red-500/50 text-red-300">
+                {error}
               </div>
             )}
           </div>
@@ -338,7 +389,7 @@ export default function Home() {
             </div>
             <div className="glass rounded-xl p-6">
               <h3 className="font-semibold text-white mb-2">How long until I can test my app?</h3>
-              <p className="text-gray-400 text-sm">About 10 minutes. AI generates code instantly, cloud Mac compiles in ~8 minutes, TestFlight upload takes 2 minutes.</p>
+              <p className="text-gray-400 text-sm">AI generates code instantly. Cloud build timing depends on your app's complexity and features. TestFlight availability varies based on Apple's processing.</p>
             </div>
             <div className="glass rounded-xl p-6">
               <h3 className="font-semibold text-white mb-2">Do I need my own Apple Developer account?</h3>
@@ -359,9 +410,9 @@ export default function Home() {
             <div className="w-8 h-8 bg-gradient-to-br from-orange-500 to-pink-600 rounded-lg flex items-center justify-center">
               <Code2 className="w-4 h-4 text-white" />
             </div>
-            <span className="font-bold text-white">SwiftCraft</span>
+            <span className="font-bold text-white">ShipThat</span>
           </div>
-          <p className="text-sm text-gray-500">© 2026 SwiftCraft Inc. All rights reserved.</p>
+          <p className="text-sm text-gray-500">© 2026 ShipThat Inc. All rights reserved.</p>
           <div className="flex gap-6 text-sm text-gray-400">
             <a href="#" className="hover:text-white transition-colors">Privacy</a>
             <a href="#" className="hover:text-white transition-colors">Terms</a>
