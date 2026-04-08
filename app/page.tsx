@@ -7,11 +7,9 @@ import {
   ArrowRight, 
   CheckCircle, 
   Sparkles, 
-  Eye, 
-  Download, 
-  Zap,
-  Shield,
-  Clock
+  Plane,
+  Rocket,
+  Zap
 } from 'lucide-react'
 
 export default function Home() {
@@ -50,19 +48,19 @@ export default function Home() {
         <div className="max-w-6xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm font-medium text-orange-300 border border-orange-500/30 mb-6">
             <span className="w-2 h-2 bg-orange-400 rounded-full animate-pulse"></span>
-            AI-powered iOS development
+            AI builds, cloud compiles, you just submit
           </div>
           
           <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-6 text-white">
             Describe Your App.<br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-pink-500">
-              We Build The Code.
+              We Handle The Rest.
             </span>
           </h1>
           
           <p className="text-xl text-gray-400 max-w-2xl mx-auto mb-8">
-            Turn your iOS app idea into production-ready SwiftUI code. 
-            Download the complete Xcode project, build on your Mac, submit to App Store.
+            AI generates your SwiftUI code. We build it on cloud Macs and deliver to TestFlight. 
+            You just test and submit to App Store. No Xcode needed.
           </p>
           
           <div className="flex flex-wrap gap-4 justify-center mb-12">
@@ -78,15 +76,56 @@ export default function Home() {
           <div className="flex items-center justify-center gap-8 text-sm text-gray-500">
             <div className="flex items-center gap-2">
               <CheckCircle className="w-5 h-5 text-emerald-400" />
-              <span>Full source code</span>
+              <span>10 min to TestFlight</span>
             </div>
             <div className="flex items-center gap-2">
               <CheckCircle className="w-5 h-5 text-emerald-400" />
-              <span>No hosting lock-in</span>
+              <span>No Mac required</span>
             </div>
             <div className="flex items-center gap-2">
               <CheckCircle className="w-5 h-5 text-emerald-400" />
               <span>Your Apple account</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works */}
+      <section className="py-20 px-6">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-white mb-4">How It Works</h2>
+            <p className="text-gray-400">From idea to App Store. Zero coding required.</p>
+          </div>
+          
+          <div className="grid md:grid-cols-4 gap-6">
+            <div className="text-center">
+              <div className="w-16 h-16 bg-orange-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl font-bold text-orange-400">1</span>
+              </div>
+              <h3 className="font-semibold text-white mb-2">Describe</h3>
+              <p className="text-gray-400 text-sm">Tell our AI what you want to build</p>
+            </div>
+            <div className="text-center">
+              <div className="w-16 h-16 bg-orange-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl font-bold text-orange-400">2</span>
+              </div>
+              <h3 className="font-semibold text-white mb-2">We Build</h3>
+              <p className="text-gray-400 text-sm">AI writes code, cloud Macs compile</p>
+            </div>
+            <div className="text-center">
+              <div className="w-16 h-16 bg-orange-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <Plane className="w-8 h-8 text-orange-400" />
+              </div>
+              <h3 className="font-semibold text-white mb-2">TestFlight</h3>
+              <p className="text-gray-400 text-sm">Get link in 10 min, test on iPhone</p>
+            </div>
+            <div className="text-center">
+              <div className="w-16 h-16 bg-orange-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <Rocket className="w-8 h-8 text-orange-400" />
+              </div>
+              <h3 className="font-semibold text-white mb-2">App Store</h3>
+              <p className="text-gray-400 text-sm">One-click submit, Apple reviews</p>
             </div>
           </div>
         </div>
@@ -123,7 +162,7 @@ export default function Home() {
                   {isGenerating ? (
                     <>
                       <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                      Generating...
+                      Building...
                     </>
                   ) : (
                     <>
@@ -138,10 +177,46 @@ export default function Home() {
             {isGenerating && (
               <div className="mt-8 p-8 rounded-xl bg-slate-900/50 flex flex-col items-center">
                 <div className="w-16 h-16 border-4 border-orange-500/30 border-t-orange-500 rounded-full animate-spin mb-4"></div>
-                <p className="text-white font-medium">Analyzing your requirements...</p>
-                <p className="text-gray-500 text-sm mt-2">This takes about 30 seconds</p>
+                <p className="text-white font-medium">Building your app on cloud Mac...</p>
+                <p className="text-gray-500 text-sm mt-2">This takes about 10 minutes</p>
               </div>
             )}
+          </div>
+        </div>
+      </section>
+
+      {/* What You Get */}
+      <section className="py-20 px-6">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-white mb-4">What You Get</h2>
+            <p className="text-gray-400">Everything handled. You just submit.</p>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="glass rounded-2xl p-6">
+              <div className="w-12 h-12 bg-orange-500/20 rounded-xl flex items-center justify-center mb-4">
+                <Code2 className="w-6 h-6 text-orange-400" />
+              </div>
+              <h3 className="font-semibold text-white mb-2">AI Code Generation</h3>
+              <p className="text-gray-400 text-sm">SwiftUI views, models, and architecture generated from your description</p>
+            </div>
+            
+            <div className="glass rounded-2xl p-6">
+              <div className="w-12 h-12 bg-orange-500/20 rounded-xl flex items-center justify-center mb-4">
+                <Zap className="w-6 h-6 text-orange-400" />
+              </div>
+              <h3 className="font-semibold text-white mb-2">Cloud Build</h3>
+              <p className="text-gray-400 text-sm">Compiled on cloud Macs, signed with your certificate, uploaded to TestFlight</p>
+            </div>
+            
+            <div className="glass rounded-2xl p-6">
+              <div className="w-12 h-12 bg-orange-500/20 rounded-xl flex items-center justify-center mb-4">
+                <Plane className="w-6 h-6 text-orange-400" />
+              </div>
+              <h3 className="font-semibold text-white mb-2">TestFlight Delivery</h3>
+              <p className="text-gray-400 text-sm">Test on your iPhone immediately. No Xcode, no Mac needed.</p>
+            </div>
           </div>
         </div>
       </section>
@@ -172,7 +247,7 @@ export default function Home() {
                   <CheckCircle className="w-4 h-4 text-emerald-400" /> 100 credits/month
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-emerald-400" /> Basic templates
+                  <CheckCircle className="w-4 h-4 text-emerald-400" /> Cloud builds included
                 </li>
                 <li className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-emerald-400" /> Email support
@@ -201,10 +276,10 @@ export default function Home() {
                   <CheckCircle className="w-4 h-4 text-emerald-400" /> 300 credits/month
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-emerald-400" /> Priority generation
+                  <CheckCircle className="w-4 h-4 text-emerald-400" /> Priority cloud builds
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-emerald-400" /> App Store guidance
+                  <CheckCircle className="w-4 h-4 text-emerald-400" /> App Store submission help
                 </li>
               </ul>
               <button className="w-full py-3 rounded-xl bg-gradient-to-r from-orange-500 to-pink-600 font-bold hover:scale-105 transition-transform text-white">
@@ -241,48 +316,37 @@ export default function Home() {
             </div>
           </div>
           
-          <p className="text-center text-sm text-gray-500 mt-8">
-            Apple Developer Program ($99/year) required separately. Credits roll over for 12 months.
-          </p>
+          <div className="mt-8 text-center space-y-2">
+            <p className="text-sm text-gray-500">
+              Apple Developer Program ($99/year) required separately.
+            </p>
+            <p className="text-sm text-gray-500">
+              Credits roll over for 12 months. Cloud builds included in all plans.
+            </p>
+          </div>
         </div>
       </section>
 
-      {/* How It Works */}
+      {/* FAQ */}
       <section className="py-20 px-6">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-white mb-4">How It Works</h2>
-            <p className="text-gray-400">From idea to App Store in 4 steps</p>
-          </div>
-          
-          <div className="grid md:grid-cols-4 gap-6">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-orange-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl font-bold text-orange-400">1</span>
-              </div>
-              <h3 className="font-semibold text-white mb-2">Describe</h3>
-              <p className="text-gray-400 text-sm">Tell our AI what you want to build</p>
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-3xl font-bold text-center text-white mb-12">Common Questions</h2>
+          <div className="space-y-4">
+            <div className="glass rounded-xl p-6">
+              <h3 className="font-semibold text-white mb-2">Do I need a Mac or Xcode?</h3>
+              <p className="text-gray-400 text-sm">No. We build your app on cloud Macs and deliver it to TestFlight. You just test on your iPhone and submit to App Store.</p>
             </div>
-            <div className="text-center">
-              <div className="w-16 h-16 bg-orange-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl font-bold text-orange-400">2</span>
-              </div>
-              <h3 className="font-semibold text-white mb-2">Generate</h3>
-              <p className="text-gray-400 text-sm">AI writes SwiftUI code & architecture</p>
+            <div className="glass rounded-xl p-6">
+              <h3 className="font-semibold text-white mb-2">How long until I can test my app?</h3>
+              <p className="text-gray-400 text-sm">About 10 minutes. AI generates code instantly, cloud Mac compiles in ~8 minutes, TestFlight upload takes 2 minutes.</p>
             </div>
-            <div className="text-center">
-              <div className="w-16 h-16 bg-orange-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl font-bold text-orange-400">3</span>
-              </div>
-              <h3 className="font-semibold text-white mb-2">Download</h3>
-              <p className="text-gray-400 text-sm">Get complete Xcode project</p>
+            <div className="glass rounded-xl p-6">
+              <h3 className="font-semibold text-white mb-2">Do I need my own Apple Developer account?</h3>
+              <p className="text-gray-400 text-sm">Yes, you need Apple Developer Program ($99/year) to publish. We use your credentials to sign and submit apps under your name.</p>
             </div>
-            <div className="text-center">
-              <div className="w-16 h-16 bg-orange-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl font-bold text-orange-400">4</span>
-              </div>
-              <h3 className="font-semibold text-white mb-2">Publish</h3>
-              <p className="text-gray-400 text-sm">Build & submit to App Store</p>
+            <div className="glass rounded-xl p-6">
+              <h3 className="font-semibold text-white mb-2">What if Apple rejects my app?</h3>
+              <p className="text-gray-400 text-sm">Paste the rejection reason into our platform. AI will fix the issue and rebuild. No extra charge for rebuilds.</p>
             </div>
           </div>
         </div>
